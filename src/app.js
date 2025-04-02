@@ -18,8 +18,10 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "dev-meetup-client.vercel.app",
-    credentials: true
+    origin: "https://dev-meetup-client.vercel.app", // Replace with your frontend URL
+    credentials: true, // Allows cookies to be sent
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 }));
 
 
