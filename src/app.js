@@ -23,6 +23,14 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 }));
+// ✅ Allow CORS for all responses
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://dev-meetup-client.vercel.app");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+});
 
 
 app.use('/', authRouter);
