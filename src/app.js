@@ -18,20 +18,20 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-   // origin: "https://dev-meetup-client.vercel.app", 
-    origin: "http://localhost:5173", 
+   origin: "https://dev-meetup-client.vercel.app", 
+    // origin: "http://localhost:5173", 
     credentials: true, // Allows cookies to be sent
-    // methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    // allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 }));
 // ✅ Allow CORS for all responses
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "https://dev-meetup-client.vercel.app");
-//     res.header("Access-Control-Allow-Credentials", "true");
-//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//     next();
-// });
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://dev-meetup-client.vercel.app");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+});
 
 
 app.use('/', authRouter);
