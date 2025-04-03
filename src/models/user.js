@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require("dotenv").config();
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
@@ -76,7 +77,7 @@ const userSchema = mongoose.Schema({
     },
     otpExpiry: {
          type: Date 
-        },   // Store OTP expiration time
+        },   
 
 }, {
     timestamps: true
@@ -84,7 +85,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.getJWT = async function () {
     const user = this;
-    const token = await jwt.sign({ _id: user._id }, "Adarsh@7549", { expiresIn: "7d" });
+    const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
     return token;
 };
 

@@ -18,19 +18,20 @@ const server = http.createServer(app);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://dev-meetup-client.vercel.app", // Replace with your frontend URL
+   // origin: "https://dev-meetup-client.vercel.app", 
+    origin: "http://localhost:5173", 
     credentials: true, // Allows cookies to be sent
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    // methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    // allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 }));
 // ✅ Allow CORS for all responses
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://dev-meetup-client.vercel.app");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "https://dev-meetup-client.vercel.app");
+//     res.header("Access-Control-Allow-Credentials", "true");
+//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     next();
+// });
 
 
 app.use('/', authRouter);
@@ -56,141 +57,3 @@ mongoose.connect(MONGO_URI)
     .catch((err) => console.error(err));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.get("/user",(req, res) => {
-//     try {
-//         throw new Error('This is a forced error');
-//         res.send('User is called');  
-//     } catch (error) {
-//         res.status(500).send('Something went wrong contact admin'); 
-//     }
-
-   
-// });
-// app.use("/",(err,req,res,next)=>{
-   
-//     if(err){
-//         res.status(500).send('Something went wrong');
-//     }
-    
-// });
-
-
-// app.use('/admin', adminauth);
-
-// app.get("/admin/getalldata", (req,res)=>{
-//     res.send("all data");
-// })
-// app.get("/admin/deletealldata", (req,res)=>{
-//     res.send("all data deleteds");
-// })
-// app.get("/user", userauth, (req,res)=>{
-//     res.send("User is called. ");
-// })
-
-// app.get("/admin/getalldata", (req,res)=>{
-//     res.send("all data");
-// })
-// app.get("/admin/getalldata", (req,res)=>{
-//     res.send("all data");
-// })
-// app.use("/user", (req, res , next)=>{
-//     console.log("handling route 1!!")
-//     // res.send("REsponse 1");
-//     next();
-// },
-// (req, res, next)=>{
-//     console.log("handling route 2!!")
-//     // res.send("Response 2"); 
-//     next()
-// },
-// (req, res, next)=>{
-//     console.log("handling route 3!!")
-//     // res.send("Response 3"); 
-//     next()
-// },
-// (req, res, next)=>{
-//     console.log("handling route 4!!")
-//     // res.send("Response 4"); 
-//     next()
-// },
-// (req, res, next)=>{
-//     console.log("handling route 5!!")
-//     res.send("Response 5"); 
-// })
-
-
-// app.use("/", (req, res)=>{
-//     res.send("hello from dashboard ");
-// })
-
-// app.use("/te?st", (req, res)=>{
-//     res.send("hello from server");
-// })
-// app.get('/user:userId', (req, res)=>{
-//     res.send("hello from server");
-// })
-// app.use("/hello", (req, res)=>{
-//     res.send("hello from  adarsh bhagat"); 
-// })
-
-// using curd operation
-
-// app.get('/user/:userid', (req, res )=>{
-//     console.log(req.params);
-//     res.send({name: 'adarsh', age: 23});
-// })
-// app.post('/user', (req, res )=>{
-//     res.send("data saved succesfully");
-// })
