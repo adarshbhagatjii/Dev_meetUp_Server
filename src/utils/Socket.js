@@ -25,14 +25,14 @@ const Chat = require('../models/chat');
         socket.on('joinchat', ({userId, targetUserId, firstName})=>{
             const roomId = getSecretRoomId(userId, targetUserId)
 
-            console.log(firstName +' has joined room:-'+ roomId);
+           
             socket.join(roomId);
 
         });
         socket.on('sendMessage', async({ firstName, text,  targetUserId, userId, })=>{
             try{
             const roomId = getSecretRoomId(userId, targetUserId)
-            console.log(firstName + ' has sent message:-' + text);
+           
                 let chat = await Chat.findOne({
                     participants: {$all: [userId, targetUserId]}
                 });
