@@ -15,7 +15,9 @@ const Chat = require('../models/chat');
 
     const  io = socket(server, {
         cors:{
-            origin: 'http://localhost:5173'
+            origin: "https://dev-meetup-client.vercel.app", 
+            methods: ["GET", "POST"],
+            credentials: true
         }
     });
     io.on("connection", (socket)=>{
